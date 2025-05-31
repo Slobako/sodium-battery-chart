@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Sodium-Ion Batteries Work</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .battery-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .battery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+        }
+        
+        .sodium-section::before {
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+        }
+        
+        .battery-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .battery-diagram {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #ecf0f1;
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .electrode {
+            width: 80px;
+            height: 120px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .anode {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+        }
+        
+        .cathode {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .sodium-cathode {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+        
+        .electrolyte {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            margin: 0 20px;
+        }
+        
+        .ion {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            position: absolute;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .lithium-ion {
+            background: #e74c3c;
+        }
+        
+        .sodium-ion {
+            background: #3498db;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-10px) translateX(10px); }
+            50% { transform: translateY(0px) translateX(20px); }
+            75% { transform: translateY(10px) translateX(10px); }
+        }
+        
+        .arrow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: #95a5a6;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        .benefits {
+            background: #e8f5e8;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .benefits h3 {
+            color: #27ae60;
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .benefits ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .benefits li {
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        
+        .key-difference {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .key-difference h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.8em;
+        }
+        
+        .key-difference p {
+            font-size: 1.2em;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .battery-diagram {
+                height: 150px;
+            }
+            
+            .electrode {
+                width: 60px;
+                height: 90px;
+                font-size: 0.9em;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>How Sodium-Ion Batteries Work</h1>
+        <p class="subtitle">Simple comparison with lithium-ion technology</p>
+        
+        <div class="comparison-grid">
+            <div class="battery-section">
+                <div class="battery-title">🔋 Lithium-Ion Battery</div>
+                <div class="battery-diagram">
+                    <div class="electrode anode">
+                        <div>Anode</div>
+                        <small>(Graphite)</small>
+                    </div>
+                    <div class="electrolyte">
+                        <div class="ion lithium-ion" style="top: 30%; left: 20%;">Li+</div>
+                        <div class="ion lithium-ion" style="top: 60%; left: 40%;">Li+</div>
+                        <div class="ion lithium-ion" style="top: 45%; left: 70%;">Li+</div>
+                        <div class="arrow">⚡</div>
+                        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #7f8c8d; font-size: 0.9em;">
+                            Lithium ions move through electrolyte
+                        </div>
+                    </div>
+                    <div class="electrode cathode">
+                        <div>Cathode</div>
+                        <small>(Li Metal Oxide)</small>
+                    </div>
+                </div>
+                <div class="benefits">
+                    <h3>Current Standard</h3>
+                    <ul>
+                        <li>High energy density</li>
+                        <li>Mature technology</li>
+                        <li>Lightweight</li>
+                        <li>But: Expensive lithium mining</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="battery-section sodium-section">
+                <div class="battery-title">🧂 Sodium-Ion Battery</div>
+                <div class="battery-diagram">
+                    <div class="electrode anode">
+                        <div>Anode</div>
+                        <small>(Hard Carbon)</small>
+                    </div>
+                    <div class="electrolyte">
+                        <div class="ion sodium-ion" style="top: 25%; left: 15%;">Na+</div>
+                        <div class="ion sodium-ion" style="top: 65%; left: 35%;">Na+</div>
+                        <div class="ion sodium-ion" style="top: 40%; left: 65%;">Na+</div>
+                        <div class="arrow">⚡</div>
+                        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #7f8c8d; font-size: 0.9em;">
+                            Sodium ions move through electrolyte
+                        </div>
+                    </div>
+                    <div class="electrode sodium-cathode">
+                        <div>Cathode</div>
+                        <small>(Na Metal Oxide)</small>
+                    </div>
+                </div>
+                <div class="benefits">
+                    <h3>Emerging Alternative</h3>
+                    <ul>
+                        <li>Abundant sodium (salt!)</li>
+                        <li>Much lower cost</li>
+                        <li>Environmentally friendly</li>
+                        <li>Same basic principle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="key-difference">
+            <h2>🔑 The Key Difference</h2>
+            <p>Both batteries work the same way - ions shuttle back and forth between electrodes to store and release energy. Sodium-ion simply swaps expensive, rare lithium for abundant, cheap sodium from salt!</p>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const ions = document.querySelectorAll('.ion');
+            
+            ions.forEach((ion, index) => {
+                // Stagger the animation start times
+                ion.style.animationDelay = (index * 0.5) + 's';
+            });
+            
+            // Add click interaction to highlight differences
+            const sections = document.querySelectorAll('.battery-section');
+            sections.forEach(section => {
+                section.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.transition = 'transform 0.3s ease';
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
